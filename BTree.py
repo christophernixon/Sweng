@@ -1,10 +1,10 @@
 """Class for binary tree, using code from
 https://stackoverflow.com/questions/28337989/how-to-build-a-binary-tree-in-python"""
 class BTree:
-    def __init__(self, root):
-        self.key = root
-        self.lt = None
-        self.rt = None
+    def __init__(self, key, left_tree=None, right_tree=None):
+        self.key = key
+        self.lt = left_tree
+        self.rt = right_tree
     
     def insert_right_node(self, node):
         if self.rt == None:
@@ -12,7 +12,6 @@ class BTree:
         else:
             # Create new tree and insert it into appropriate place.
             t = BTree(node)
-            t.rt = self.rt
             self.rt = t
     
     def insert_left_node(self, node):
@@ -21,7 +20,6 @@ class BTree:
         else:
             # Create new tree and insert it into appropriate place.
             t = BTree(node)
-            t.lt = self.lt
             self.lt = t
     
     # Getters and Setters
