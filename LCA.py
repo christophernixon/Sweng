@@ -9,7 +9,7 @@ def get_path(root, key, path):
     if root is None: 
         return False
 
-    # Add this node to path
+    # Add this node's key to path
     path.append(root.key)
 
     # Check if it is desired node
@@ -17,24 +17,24 @@ def get_path(root, key, path):
         return True
 
     # If not desired node, check left and right sub-tree
-    if root.left != None and get_path(root.lt, key, path):
+    if root.lt != None and get_path(root.lt, key, path):
         return True 
-    if root.right!= None and get_path(root.rt, key, path):
+    if root.rt != None and get_path(root.rt, key, path):
         return True
     
     # If this point is reached, then desired node is not in left or right subtree
     path.pop()
     return False
 
-# Returns LCA if keys key1, key2 are in the given binary tree, else returns -1 
-def get_LCA(root, key1, key2):
+# Returns LCA if nodes node1, node2 are in the given binary tree, else returns -1 
+def get_LCA(root, node1, node2):
     # Initialise paths
     path1 = []
     path2 = []
 
-    if not get_path(root, key1, path1): 
+    if not get_path(root, node1, path1): 
         return -1
-    if not get_path(root, key2, path2): 
+    if not get_path(root, node2, path2): 
         return -1
 
     # Simple while loop comparing nodes in path until nodes differ.
