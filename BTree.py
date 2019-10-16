@@ -1,5 +1,7 @@
 """Class for binary tree, using code from
-https://stackoverflow.com/questions/28337989/how-to-build-a-binary-tree-in-python"""
+https://stackoverflow.com/questions/28337989/how-to-build-a-binary-tree-in-python for BTree,
+and from https://stackoverflow.com/questions/34012886/print-binary-tree-level-by-level-in-python
+for pretty_print()"""
 class BTree:
     def __init__(self, key, left_tree=None, right_tree=None):
         self.key = key
@@ -37,14 +39,52 @@ class BTree:
     def get_root(self):
             return self.key
 
-# class Node:
-#     def __init__(self, key, left_node=None, right_node=None):
-#         self.key = key
-#         self.ln = left_tree
-#         self.rn = right_tree
-    
-#     def get_rn(self):
-#                 return self.rn
+    def pretty_print(self):
+        lines, _, _, _ = self._pretty_print()
+        for line in lines:
+            print(line)
 
-#     def get_ln(self):
-#             return self.ln
+    def _pretty_print(self):
+        """Returns list of strings, width, height, and horizontal coordinate of the root."""
+        # No child.
+        if self.rt is None and self.lt is None:
+            line = '%s' % self.key
+            width = len(line)
+            height = 1
+            middle = width // 2
+            return [line], width, height, middle
+
+        # Only left child.
+        if self.rt is None:
+            lines, n, p, x = self.lt._pretty_print()
+            s = '%s' % self.key
+            u = len(s)
+            first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s
+            second_line = x * ' ' + '/' + (n - x - 1 + u) * ' '
+            shifted_lines = [line + u * ' ' for line in lines]
+            return [first_line, second_line] + shifted_lines, n + u, p + 2, n + u // 2
+
+        # Only right child.
+        if self.lt is None:
+            lines, n, p, x = self.rt._pretty_print()
+            s = '%s' % self.key
+            u = len(s)
+            first_line = s + x * '_' + (n - x) * ' '
+            second_line = (u + x) * ' ' + '\\' + (n - x - 1) * ' '
+            shifted_lines = [u * ' ' + line for line in lines]
+            return [first_line, second_line] + shifted_lines, n + u, p + 2, u // 2
+
+        # Two children.
+        left, n, p, x = self.lt._pretty_print()
+        right, m, q, y = self.rt._pretty_print()
+        s = '%s' % self.key
+        u = len(s)
+        first_line = (x + 1) * ' ' + (n - x - 1) * '_' + s + y * '_' + (m - y) * ' '
+        second_line = x * ' ' + '/' + (n - x - 1 + u + y) * ' ' + '\\' + (m - y - 1) * ' '
+        if p < q:
+            left += [n * ' '] * (q - p)
+        elif q < p:
+            right += [m * ' '] * (p - q)
+        zipped_lines = zip(left, right)
+        lines = [first_line, second_line] + [a + u * ' ' + b for a, b in zipped_lines]
+        return lines, n + m + u, max(p, q) + 2, n + u // 2
