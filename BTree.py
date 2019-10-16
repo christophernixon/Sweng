@@ -5,8 +5,14 @@ for pretty_print()"""
 class BTree:
     def __init__(self, key, left_tree=None, right_tree=None):
         self.key = key
-        self.lt = left_tree
-        self.rt = right_tree
+        if isinstance(left_tree, BTree) or left_tree == None:
+            self.lt = left_tree
+        elif isinstance(left_tree, int):
+            self.lt = BTree(left_tree)
+        if isinstance(right_tree, BTree) or right_tree == None:
+            self.rt = right_tree
+        elif isinstance(right_tree, int):
+            self.rt = BTree(right_tree)
     
     def insert_right_node(self, key):
         if self.rt == None:

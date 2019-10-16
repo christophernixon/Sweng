@@ -10,8 +10,8 @@ class test_btree(unittest.TestCase):
         self.assertEqual(tree.get_rt(), None, "Should be None")
         tree = BTree.BTree(7, 8, 9)
         self.assertEqual(tree.get_root(), 7, "Should be 7")
-        self.assertEqual(tree.get_lt(), 8, "Should be 8")
-        self.assertEqual(tree.get_rt(), 9, "Should be 9")
+        self.assertEqual(tree.get_lt().key, 8, "Should be 8")
+        self.assertEqual(tree.get_rt().key, 9, "Should be 9")
     
     def test_insert_right(self):
         tree = BTree.BTree(11)
