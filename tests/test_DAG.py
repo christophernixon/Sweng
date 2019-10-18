@@ -1,5 +1,5 @@
 import unittest
-from DAG import DAG
+from DAG import DAG, DAGValidationError
 
 
 class test_dag(unittest.TestCase):
@@ -133,6 +133,48 @@ class test_dag(unittest.TestCase):
         dag.add_edge('3', '4')
         self.assertEqual(dag.validate(), (True, 'valid'), "Valid graph incorrectly identified as invalid.")
 
+        # Test that exception is raised whenever edge is added that will cause graph to fail topological sort.
+        dag = DAG()
+        dag.add_node('1')
+        dag.add_node('2')
+        dag.add_node('3')
+        dag.add_edge('1', '2')
+        dag.add_edge('2', '3')
+        with self.assertRaises(DAGValidationError):
+            dag.add_edge('3', '1')
+    
+    def test_predecessors(self):
+        # Empty graph
+        dag = DAG()
+        self.assertEqual(dag.predecessors('1'), [], "Incorrect Predecessors")
+
+        # Single node graph
+        dag = DAG()
+        dag.add_node('1')
+        self.assertEqual(dag.predecessors('1'), [], "Incorrect Predecessors")
+
+        # Single edge, two node graph
+        dag = DAG()
+        dag.add_node('1')
+        dag.add_node('2')
+        dag.add_edge('1', '2')
+        self.assertEqual(dag.predecessors('1'), [], "Incorrect Predecessors")
+        self.assertEqual(dag.predecessors('2'), ['1'], "Incorrect Predecessors")
+
+        # Complicated graph
+        dag = DAG()
+        dag.add_node('1')
+        dag.add_node('2')
+        dag.add_node('3')
+        dag.add_node('4')
+        dag.add_edge('1', '2')
+        dag.add_edge('1', '3')
+        dag.add_edge('2', '3')
+        dag.add_edge('3', '4')
+        self.assertEqual(dag.predecessors('1'), [], "Incorrect Predecessors")
+        self.assertEqual(dag.predecessors('2'), ['1'], "Incorrect Predecessors")
+        self.assertEqual(dag.predecessors('3'), ['1', '2'], "Incorrect Predecessors")
+        self.assertEqual(dag.predecessors('4'), ['3'], "Incorrect Predecessors")
 
 if __name__ == '__main__':
     unittest.main()
