@@ -75,21 +75,6 @@ class DAG(object):
             raise KeyError('this edge does not exist in graph')
         graph[ind_node].remove(dep_node)
 
-    def rename_edges(self, old_task_name, new_task_name, graph=None):
-        """ Change references to a task in existing edges. """
-        if not graph:
-            graph = self.graph
-        for node, edges in graph.items():
-
-            if node == old_task_name:
-                graph[new_task_name] = copy(edges)
-                del graph[old_task_name]
-
-            else:
-                if old_task_name in edges:
-                    edges.remove(old_task_name)
-                    edges.add(new_task_name)
-
     def predecessors(self, node, graph=None):
         """ Returns a list of all predecessors of the given node """
         if graph is None:
