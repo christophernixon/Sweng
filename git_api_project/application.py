@@ -1,7 +1,8 @@
 import json
 import csv
+import logging
 import pandas as pd
-import git_api
+from git_api import git_api
 from flask import (Flask, abort, flash, jsonify, redirect, render_template,
                    request, send_file, send_from_directory, session)
 
@@ -23,53 +24,63 @@ data=DataStore()
 def homepage():
     return render_template("index.html")
 
-@application.route("/get-data",methods=["GET","POST"])
-def returnProdData():
-    # Get commits from repo
-    repo = 'sweng'
+@application.route("/weekday_data",methods=["GET","POST"])
+def handle_weekday_data_request():
+    # This is to allow for authenticated api requests
     user = 'christophernixon'
+
+    if request.method == 'POST':
+        repo = request.json.get('repo')
+    else:
+        # Since it is a GET request, the default repository data is supplied. 
+        repo = 'sweng'
     try:
-        commits = git_api.get_commits(repo,user)
-        return json.dumps(commits)
-    except Exception as e:
-        print(e)
-        
-@application.route("/search-repos",methods=["GET","POST"])
-def returnSearchData():
-    # Get commits from repo
-    repo = request.json.get('repo')
-    print(repo)
-    user = 'christophernixon'
-    try:
-        commits = git_api.get_commits(repo,user)
-        return json.dumps(commits)
-    except Exception as e:
-        print(e)
-    return
+        api = git_api(repo, user)
+        weekday_data = api.get_weekday_commit_freq()
+        return json.dumps(weekday_data)
+    except AttributeError as e:
+        logging.error(e)
+        abort(400)
 
 @application.route("/apache-data",methods=["GET","POST"])
 def returnApacheData():
-    with open('/Users/chrisnixon/yr3/sweng/git_api_project/apacheWeekdays.json', 'r') as f:
-        data = json.load(f)
-    return json.dumps(data)
+    try:
+        with open('/Users/chrisnixon/yr3/sweng/git_api_project/static/apacheWeekdays.json', 'r') as f:
+            data = json.load(f)
+        return json.dumps(data)
+    except Exception as e:
+        logging.error(e)
+        abort(400)
 
 @application.route("/nodejs-data",methods=["GET","POST"])
 def returnNodeJsData():
-    with open('/Users/chrisnixon/yr3/sweng/git_api_project/nodejsWeekdays.json', 'r') as f:
-        data = json.load(f)
-    return json.dumps(data)
+    try:
+        with open('/Users/chrisnixon/yr3/sweng/git_api_project/static/nodejsWeekdays.json', 'r') as f:
+            data = json.load(f)
+        return json.dumps(data)
+    except Exception as e:
+        logging.error(e)
+        abort(400)
 
 @application.route("/flutter-data",methods=["GET","POST"])
 def returnFlutterData():
-    with open('/Users/chrisnixon/yr3/sweng/git_api_project/flutterWeekdays.json', 'r') as f:
-        data = json.load(f)
-    return json.dumps(data)
+    try:
+        with open('/Users/chrisnixon/yr3/sweng/git_api_project/static/flutterWeekdays.json', 'r') as f:
+            data = json.load(f)
+        return json.dumps(data)
+    except Exception as e:
+        logging.error(e)
+        abort(400)
 
 @application.route("/typescript-data",methods=["GET","POST"])
 def returnTypescriptData():
-    with open('/Users/chrisnixon/yr3/sweng/git_api_project/typescriptWeekdays.json', 'r') as f:
-        data = json.load(f)
-    return json.dumps(data)
+    try:
+        with open('/Users/chrisnixon/yr3/sweng/git_api_project/static/typescriptWeekdays.json', 'r') as f:
+            data = json.load(f)
+        return json.dumps(data)
+    except Exception as e:
+        logging.error(e)
+        abort(400)
 
 if __name__ == "__main__":
     application.run(debug=True)
