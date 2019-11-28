@@ -1,4 +1,9 @@
-[
+{
+  "full_name": "nodejs/node-v0.x-archive",
+  "description": "Moved to https://github.com/nodejs/node",
+  "language": "None",
+  "stargazers_count": 35354,
+  "weekdays": [
     {
       "weekday": "Thursday",
       "commits": 4609
@@ -28,3 +33,4 @@
       "commits": 4951
     }
   ]
+}

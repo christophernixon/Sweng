@@ -1,4 +1,9 @@
-[
+{
+  "full_name": "flutter/flutter",
+  "description": "Flutter makes it easy and fast to build beautiful mobile apps.",
+  "language": "Dart",
+  "stargazers_count": 80310,
+  "weekdays": [
     {
       "weekday": "Monday",
       "commits": 2375
@@ -28,3 +33,4 @@
       "commits": 3242
     }
   ]
+}
