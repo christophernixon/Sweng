@@ -1,6 +1,7 @@
 import json
 import csv
 import pandas as pd
+import git_api
 from flask import (Flask, abort, flash, jsonify, redirect, render_template,
                    request, send_file, send_from_directory, session)
 
@@ -24,16 +25,51 @@ def homepage():
 
 @application.route("/get-data",methods=["GET","POST"])
 def returnProdData():
-    with open('sampleWeekdays.csv', 'r') as f:
-        reader = csv.reader(f, delimiter=';')
-        data_list = list()
-        for row in reader:
-            data_list.append(row)
-    data = [dict(zip(data_list[0],row)) for row in data_list]
-    data.pop(0)
-    s = json.dumps(data)
-    return s
-# export the final result to a json file
+    # Get commits from repo
+    repo = 'sweng'
+    user = 'christophernixon'
+    try:
+        commits = git_api.get_commits(repo,user)
+        return json.dumps(commits)
+    except Exception as e:
+        print(e)
+        
+@application.route("/search-repos",methods=["GET","POST"])
+def returnSearchData():
+    # Get commits from repo
+    repo = request.json.get('repo')
+    print(repo)
+    user = 'christophernixon'
+    try:
+        commits = git_api.get_commits(repo,user)
+        return json.dumps(commits)
+    except Exception as e:
+        print(e)
+    return
+
+@application.route("/apache-data",methods=["GET","POST"])
+def returnApacheData():
+    with open('/Users/chrisnixon/yr3/sweng/git_api_project/apacheWeekdays.json', 'r') as f:
+        data = json.load(f)
+    return json.dumps(data)
+
+@application.route("/nodejs-data",methods=["GET","POST"])
+def returnNodeJsData():
+    with open('/Users/chrisnixon/yr3/sweng/git_api_project/nodejsWeekdays.json', 'r') as f:
+        data = json.load(f)
+    return json.dumps(data)
+
+@application.route("/flutter-data",methods=["GET","POST"])
+def returnFlutterData():
+    with open('/Users/chrisnixon/yr3/sweng/git_api_project/flutterWeekdays.json', 'r') as f:
+        data = json.load(f)
+    return json.dumps(data)
+
+@application.route("/typescript-data",methods=["GET","POST"])
+def returnTypescriptData():
+    with open('/Users/chrisnixon/yr3/sweng/git_api_project/typescriptWeekdays.json', 'r') as f:
+        data = json.load(f)
+    return json.dumps(data)
 
 if __name__ == "__main__":
     application.run(debug=True)
