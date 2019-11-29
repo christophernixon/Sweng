@@ -1,0 +1,36 @@
+{
+  "full_name": "nodejs/node-v0.x-archive",
+  "description": "Moved to https://github.com/nodejs/node",
+  "language": "None",
+  "stargazers_count": 35354,
+  "weekdays": [
+    {
+      "weekday": "Thursday",
+      "commits": 4609
+    },
+    {
+      "weekday": "Friday",
+      "commits": 4697
+    },
+    {
+      "weekday": "Saturday",
+      "commits": 2792
+    },
+    {
+      "weekday": "Tuesday",
+      "commits": 4872
+    },
+    {
+      "weekday": "Monday",
+      "commits": 4225
+    },
+    {
+      "weekday": "Sunday",
+      "commits": 2586
+    },
+    {
+      "weekday": "Wednesday",
+      "commits": 4951
+    }
+  ]
+}

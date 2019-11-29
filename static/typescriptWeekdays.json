@@ -1,0 +1,36 @@
+{
+  "full_name": "microsoft/TypeScript",
+  "description": "TypeScript is a superset of JavaScript that compiles to clean JavaScript output.",
+  "language": "TypeScript",
+  "stargazers_count": 56045,
+  "weekdays": [
+    {
+      "commits": 4949,
+      "weekday": "Friday"
+    },
+    {
+      "commits": 5639,
+      "weekday": "Tuesday"
+    },
+    {
+      "commits": 1788,
+      "weekday": "Saturday"
+    },
+    {
+      "commits": 4586,
+      "weekday": "Monday"
+    },
+    {
+      "commits": 5756,
+      "weekday": "Thursday"
+    },
+    {
+      "commits": 5718,
+      "weekday": "Wednesday"
+    },
+    {
+      "commits": 854,
+      "weekday": "Sunday"
+    }
+  ]
+}

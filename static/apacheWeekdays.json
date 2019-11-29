@@ -1,0 +1,36 @@
+{
+    "full_name": "apache/spark",
+    "description": "Apache Spark",
+    "language": "Scala",
+    "stargazers_count": 24385,
+    "weekdays": [
+        {
+            "commits": 4375,
+            "weekday": "Thursday"
+        },
+        {
+            "commits": 3606,
+            "weekday": "Monday"
+        },
+        {
+            "commits": 4303,
+            "weekday": "Friday"
+        },
+        {
+            "commits": 4643,
+            "weekday": "Wednesday"
+        },
+        {
+            "commits": 2279,
+            "weekday": "Saturday"
+        },
+        {
+            "commits": 4804,
+            "weekday": "Tuesday"
+        },
+        {
+            "commits": 1829,
+            "weekday": "Sunday"
+        }
+    ]
+}
