@@ -10,7 +10,8 @@ This visualisation should be hosted [here](https://sweng-app-heroku.herokuapp.co
 This is an attempt to visually represent the most popular day to commit code. To demonstrate this I chose to use a Circular Packing chart from D3. This assigns a different colored circle to each day, and I have scaled the size of the circles to correspond to the amount of commits for that day. 
 
 ## Using the visualisation
-This graph works on a single repository at a time, above the graph is an information panel which shows some details about the selected repository. Upon loading the page there is some default data loaded into the graph. On the right hand panel there is a feature for searching for a different repository. This works well for smaller repositories but due to [technical issues](#Technical\ Issues), it takes a long time to load larger repositories. 
+
+Hovering over a circle brings up information about that circle, and the circles may be dragged. This graph works on a single repository at a time, above the graph is an information panel which shows some details about the selected repository. Upon loading the page there is some default data loaded into the graph. On the right hand panel there is a feature for searching for a different repository. This works well for smaller repositories but due to [technical issues](#Technical\ Issues), it takes a long time to load larger repositories. 
 
 Below this are buttons to select a few pre-loaded large repositories, so you can see what the graph looks like with a larger dataset without having to wait a long time. 
 
