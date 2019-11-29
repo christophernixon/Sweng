@@ -45,7 +45,7 @@ def handle_weekday_data_request():
 @app.route("/apache-data",methods=["GET","POST"])
 def returnApacheData():
     try:
-        with open('/Users/chrisnixon/yr3/sweng/static/apacheWeekdays.json', 'r') as f:
+        with open('./static/apacheWeekdays.json', 'r') as f:
             data = json.load(f)
         return json.dumps(data)
     except Exception as e:
@@ -55,7 +55,7 @@ def returnApacheData():
 @app.route("/nodejs-data",methods=["GET","POST"])
 def returnNodeJsData():
     try:
-        with open('/Users/chrisnixon/yr3/sweng/static/nodejsWeekdays.json', 'r') as f:
+        with open('./static/nodejsWeekdays.json', 'r') as f:
             data = json.load(f)
         return json.dumps(data)
     except Exception as e:
@@ -65,7 +65,7 @@ def returnNodeJsData():
 @app.route("/flutter-data",methods=["GET","POST"])
 def returnFlutterData():
     try:
-        with open('/Users/chrisnixon/yr3/sweng/static/flutterWeekdays.json', 'r') as f:
+        with open('./static/flutterWeekdays.json', 'r') as f:
             data = json.load(f)
         return json.dumps(data)
     except Exception as e:
@@ -75,7 +75,7 @@ def returnFlutterData():
 @app.route("/typescript-data",methods=["GET","POST"])
 def returnTypescriptData():
     try:
-        with open('/Users/chrisnixon/yr3/sweng/static/typescriptWeekdays.json', 'r') as f:
+        with open('./static/typescriptWeekdays.json', 'r') as f:
             data = json.load(f)
         return json.dumps(data)
     except Exception as e:
