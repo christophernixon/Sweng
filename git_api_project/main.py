@@ -1,7 +1,7 @@
 import json
 import csv
 import logging
-import pandas as pd
+# import pandas as pd
 from git_api import git_api
 from flask import (Flask, abort, flash, jsonify, redirect, render_template,
                    request, send_file, send_from_directory, session)
