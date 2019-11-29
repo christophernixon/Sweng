@@ -102,25 +102,10 @@
     </div>
 
     <script>
-        // set the dimensions and margins of the graph
-        var width = 500
-        var height = 300
-        // append the svg object to the body of the page
-        var svg = d3.select("#my_dataviz")
-            .append("svg")
-            .attr("width", width)
-            .attr("height", height)
-            .attr("border", 5);
-        var borderPath = svg.append("rect")
-            .attr("x", 0)
-            .attr("y", 0)
-            .attr("height", height)
-            .attr("width", width)
-            .style("stroke", "black")
-            .style("fill", "none")
-            .style("stroke-width", 5);
+        
         // Load data from backend
         d3.json("/weekday_data", circles)
+
         function circles(tmpdata) {
             var data = tmpdata.weekdays
             // Create information box
@@ -136,7 +121,23 @@
                 .style("border-width", "2px")
                 .style("border-radius", "5px")
                 .style("padding", "5px")
-
+            // set the dimensions and margins of the graph
+            var width = 500
+            var height = 300
+            // append the svg object to the body of the page
+            var svg = d3.select("#my_dataviz")
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("border", 5);
+            var borderPath = svg.append("rect")
+                .attr("x", 0)
+                .attr("y", 0)
+                .attr("height", height)
+                .attr("width", width)
+                .style("stroke", "black")
+                .style("fill", "none")
+                .style("stroke-width", 5);
             // Color palette for days of the week
             var color = d3.scaleOrdinal()
                 .domain(["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"])
@@ -229,9 +230,23 @@
             }
         }
         function apacheCircles() {
-            d3.json("/apache-data", function (data) {
+            d3.json("/apache-data", function (tmpdata) {
+                var data = tmpdata.weekdays
                 d3.select('svg').remove()
                 d3.select('#my_dataviz').selectAll('div').remove()
+                // Create information box
+                d3.select("#my_dataviz")
+                    .append("div")
+                    .attr("class", "infobox")
+                    .html("<u>Repository Name: </u>" + tmpdata.full_name + "<br>" 
+                            + "<u>Description: </u>" + tmpdata.description + "<br>"
+                            + "<u>Language: </u>" + tmpdata.language + "<br>"
+                            + "<u>Stargazers: </u>" + tmpdata.stargazers_count)
+                    .style("background-color", "white")
+                    .style("border", "solid")
+                    .style("border-width", "2px")
+                    .style("border-radius", "5px")
+                    .style("padding", "5px")
                 // set the dimensions and margins of the graph
                 var width = 500
                 var height = 300
@@ -343,9 +358,23 @@
             })
         }
         function nodejsCircles() {
-            d3.json("/nodejs-data", function (data) {
+            d3.json("/nodejs-data", function (tmpdata) {
+                var data = tmpdata.weekdays
                 d3.select('svg').remove()
                 d3.select('#my_dataviz').selectAll('div').remove()
+                // Create information box
+                d3.select("#my_dataviz")
+                    .append("div")
+                    .attr("class", "infobox")
+                    .html("<u>Repository Name: </u>" + tmpdata.full_name + "<br>" 
+                            + "<u>Description: </u>" + tmpdata.description + "<br>"
+                            + "<u>Language: </u>" + tmpdata.language + "<br>"
+                            + "<u>Stargazers: </u>" + tmpdata.stargazers_count)
+                    .style("background-color", "white")
+                    .style("border", "solid")
+                    .style("border-width", "2px")
+                    .style("border-radius", "5px")
+                    .style("padding", "5px")
                 // set the dimensions and margins of the graph
                 var width = 500
                 var height = 300
@@ -457,9 +486,23 @@
             })
         }
         function flutterCircles() {
-            d3.json("/flutter-data", function (data) {
+            d3.json("/flutter-data", function (tmpdata) {
+                var data = tmpdata.weekdays
                 d3.select('svg').remove()
                 d3.select('#my_dataviz').selectAll('div').remove()
+                // Create information box
+                d3.select("#my_dataviz")
+                    .append("div")
+                    .attr("class", "infobox")
+                    .html("<u>Repository Name: </u>" + tmpdata.full_name + "<br>" 
+                            + "<u>Description: </u>" + tmpdata.description + "<br>"
+                            + "<u>Language: </u>" + tmpdata.language + "<br>"
+                            + "<u>Stargazers: </u>" + tmpdata.stargazers_count)
+                    .style("background-color", "white")
+                    .style("border", "solid")
+                    .style("border-width", "2px")
+                    .style("border-radius", "5px")
+                    .style("padding", "5px")
                 // set the dimensions and margins of the graph
                 var width = 500
                 var height = 300
@@ -571,9 +614,23 @@
             })
         }
         function typescriptCircles() {
-            d3.json("/typescript-data", function (data) {
+            d3.json("/typescript-data", function (tmpdata) {
+                var data = tmpdata.weekdays
                 d3.select('svg').remove()
                 d3.select('#my_dataviz').selectAll('div').remove()
+                // Create information box
+                d3.select("#my_dataviz")
+                    .append("div")
+                    .attr("class", "infobox")
+                    .html("<u>Repository Name: </u>" + tmpdata.full_name + "<br>" 
+                            + "<u>Description: </u>" + tmpdata.description + "<br>"
+                            + "<u>Language: </u>" + tmpdata.language + "<br>"
+                            + "<u>Stargazers: </u>" + tmpdata.stargazers_count)
+                    .style("background-color", "white")
+                    .style("border", "solid")
+                    .style("border-width", "2px")
+                    .style("border-radius", "5px")
+                    .style("padding", "5px")
                 // set the dimensions and margins of the graph
                 var width = 500
                 var height = 300
@@ -703,6 +760,19 @@
                         var maxCommits = Math.max.apply(null, array);
                         d3.select('svg').remove()
                         d3.select('#my_dataviz').selectAll('div').remove()
+                        // Create information box
+                        d3.select("#my_dataviz")
+                            .append("div")
+                            .attr("class", "infobox")
+                            .html("<u>Repository Name: </u>" + tmpdata.full_name + "<br>" 
+                                    + "<u>Description: </u>" + tmpdata.description + "<br>"
+                                    + "<u>Language: </u>" + tmpdata.language + "<br>"
+                                    + "<u>Stargazers: </u>" + tmpdata.stargazers_count)
+                            .style("background-color", "white")
+                            .style("border", "solid")
+                            .style("border-width", "2px")
+                            .style("border-radius", "5px")
+                            .style("padding", "5px")
                         // set the dimensions and margins of the graph
                         var width = 500
                         var height = 300

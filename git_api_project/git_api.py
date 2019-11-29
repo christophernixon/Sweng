@@ -39,7 +39,7 @@ class git_api():
         token = keyring.get_password('github', self.user)
         if token == None:
             github = Github()
-            logging.debug("No token set for user: %s",self.user)
+            logging.error("No token set for user: %s",self.user)
         else:
             github = Github(token)
         
